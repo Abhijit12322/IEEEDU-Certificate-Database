@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 Certificate Database Web Application
 
-## Getting Started
+This web application allows users to **search and retrieve certificate details** from a structured Excel sheet. Built with **Next.js** for a fast and modern frontend, the app reads directly from a `.xlsx` file to present relevant certificate data in real-time based on user input.
 
-First, run the development server:
+🔗 **Live Demo**: [https://web-zeta-kohl-63.vercel.app/](https://web-zeta-kohl-63.vercel.app/)
+
+---
+
+## ✅ Features
+
+- 🔍 **Real-Time Search**: Quickly find certificate details using name, ID, or other keywords.
+- 📊 **Excel-Based Database**: Reads directly from a raw `data.xlsx` file.
+- ⚡ **Fast and Lightweight**: Built with performance in mind using Next.js.
+- 🌐 **Hosted on Vercel**: Deployed for public access with fast load times and global availability.
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend**: [Next.js](https://nextjs.org/)
+- **Data Source**: Excel (`.xlsx`) file
+- **Excel Parser**: [SheetJS (xlsx)](https://www.npmjs.com/package/xlsx)
+- **Deployment**: [Vercel](https://vercel.com/)
+
+---
+
+
+## ⚙️ How It Works
+
+1. User enters a query (name, ID, etc.) into the search bar.
+2. The app reads and parses the `data.xlsx` file using a JavaScript-based Excel parser.
+3. Matching entries are filtered and displayed in real-time on the web page.
+
+---
+
+## 📦 Installation & Development
+
+If you want to run this project locally:
 
 ```bash
+# Clone the repo
+git clone https://github.com/your-username/certificate-database.git
+
+# Navigate to the project directory
+cd certificate-database
+
+# Install dependencies
+npm install
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
