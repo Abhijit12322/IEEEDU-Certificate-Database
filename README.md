@@ -39,10 +39,7 @@ If you want to run this project locally:
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/certificate-database.git
-
-# Navigate to the project directory
-cd certificate-database
+git clone https://github.com/Abhijit12322/IEEEDU-Certificate-Database.git
 
 # Install dependencies
 npm install
