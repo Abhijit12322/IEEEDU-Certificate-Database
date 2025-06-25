@@ -1,23 +1,24 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
 import { Search, Database } from 'lucide-react';
-import * as XLSX from 'xlsx';
+
+const BACKEND_URL = 'https://ieeedu-admincertificate.onrender.com';
 
 interface DataRow {
-  'Serial Number': string;
-  Name: string;
-  'Program\\ Events': string;
-  'Issue Date': string;
-  Position: string;
-  'Program Photo Link': string;
-  'Certificate URL': string;
+  serialNumber: string;
+  name: string;
+  programEvents: string;
+  issueDate: string;
+  position: string;
+  programPhotoLink: string;
+  certificateUrl: string;
 }
 
 function App() {
   const [serialNo, setSerialNo] = useState('');
-  const [loading, setLoading] = useState(false);
   const [data, setData] = useState<DataRow[] | null>(null);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = async () => {
     if (!serialNo.trim()) {
@@ -30,30 +31,24 @@ function App() {
     setData(null);
 
     try {
-      const res = await fetch('/data.xlsx'); // Assuming data is stored in data.xlsx
-      const arrayBuffer = await res.arrayBuffer();
-      const workbook = XLSX.read(arrayBuffer, { type: 'buffer' });
-      const sheetName = workbook.SheetNames[0];
-      const sheet = workbook.Sheets[sheetName];
-      const jsonData: DataRow[] = XLSX.utils.sheet_to_json(sheet);
+      const res = await fetch(`${BACKEND_URL}/participants`);
+      const jsonData: DataRow[] = await res.json();
 
       const input = serialNo.trim().toLowerCase();
-
-      // Search by either Serial Number or Name (case-insensitive)
       const matchedRows = jsonData.filter(
         (row) =>
-          row['Serial Number'] === serialNo.trim() ||
-          row.Name?.toLowerCase().includes(input) // Case-insensitive partial match for Name
+          row.serialNumber === serialNo.trim() ||
+          row.name?.toLowerCase().includes(input)
       );
 
       if (matchedRows.length > 0) {
-        setData(matchedRows); // Show all matching rows
+        setData(matchedRows);
       } else {
         setError('No data found for this serial number or name');
       }
-    }  catch (err) {
-      console.error('Error reading Excel file:', err);
-      setError('Failed to read the Excel file. Make sure it exists and is formatted correctly.');
+    } catch (err) {
+      console.error('Error fetching participants:', err);
+      setError('Failed to fetch data from server.');
     } finally {
       setLoading(false);
     }
@@ -65,7 +60,7 @@ function App() {
         <div className="text-center mb-8">
           <Database className="w-20 h-20 mx-auto text-blue-600 mb-4" />
           <h1 className="text-5xl font-bold text-gray-900">Certificate Data Viewer</h1>
-          <p className="mt-2 text-gray-600">Enter a serial number or name to view the details of certificate</p>
+          <p className="mt-2 text-gray-600">Enter a serial number or name to view certificate details</p>
         </div>
 
         <div className="bg-white rounded-lg shadow-md p-6">
@@ -87,53 +82,35 @@ function App() {
             </button>
           </div>
 
-          {error && (
-            <div className="p-4 bg-red-50 text-red-700 rounded-md mb-4">
-              {error}
-            </div>
-          )}
+          {error && <div className="p-4 bg-red-50 text-red-700 rounded-md mb-4">{error}</div>}
 
           {data && (
-            <div className="border border-gray-200 rounded-md overflow-hidden">
-              <table className="w-full">
+            <div className="border border-gray-200 rounded-md overflow-auto">
+              <table className="w-full text-m">
                 <thead>
-                  <tr className="border-b">
-                    <th className="px-4 py-2 text-left bg-gray-50 w-1/6">Serial Number</th>
-                    <th className="px-4 py-2 text-left bg-gray-50">Name</th>
-                    <th className="px-4 py-2 text-left bg-gray-50">Program / Events</th>
-                    <th className="px-4 py-2 text-left bg-gray-50">Issue Date</th>
-                    <th className="px-4 py-2 text-left bg-gray-50">Position</th>
-                    <th className="px-4 py-2 text-left bg-gray-50">Program Photo</th>
-                    <th className="px-4 py-2 text-left bg-gray-50">Certificate</th>
+                  <tr className="border-b bg-gray-100">
+                    <th className="px-4 py-2 text-left">Serial Number</th>
+                    <th className="px-4 py-2 text-left">Name</th>
+                    <th className="px-4 py-2 text-left">Program / Events</th>
+                    <th className="px-4 py-2 text-left">Issue Date</th>
+                    <th className="px-4 py-2 text-left">Position</th>
+                    <th className="px-4 py-2 text-left">Photo</th>
+                    <th className="px-4 py-2 text-left">Certificate</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.map((row, index) => (
                     <tr key={index} className="border-b">
-                      <td className="px-4 py-2">{row['Serial Number']}</td>
-                      <td className="px-4 py-2">{row.Name}</td>
-                      <td className="px-4 py-2">{row['Program\\ Events']}</td>
-                      <td className="px-4 py-2">{row['Issue Date']}</td>
-                      <td className="px-4 py-2">{row.Position}</td>
+                      <td className="px-4 py-2">{row.serialNumber}</td>
+                      <td className="px-4 py-2">{row.name}</td>
+                      <td className="px-4 py-2">{row.programEvents}</td>
+                      <td className="px-4 py-2">{row.issueDate}</td>
+                      <td className="px-4 py-2">{row.position}</td>
                       <td className="px-4 py-2">
-                        <a
-                          href={row['Program Photo Link']}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-600 underline"
-                        >
-                          View Photo
-                        </a>
+                        <a href={row.programPhotoLink} className="text-blue-600 underline" target="_blank">Photo</a>
                       </td>
                       <td className="px-4 py-2">
-                        <a
-                          href={row['Certificate URL']}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-600 underline"
-                        >
-                          View Certificate
-                        </a>
+                        <a href={row.certificateUrl} className="text-blue-600 underline" target="_blank">Certificate</a>
                       </td>
                     </tr>
                   ))}

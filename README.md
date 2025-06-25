@@ -1,15 +1,18 @@
 # 🎓 Certificate Database Web Application
 
-This web application allows users to **search and retrieve certificate details** from a structured Excel sheet. Built with **Next.js** for a fast and modern frontend, the app reads directly from a `.xlsx` file to present relevant certificate data in real-time based on user input.
+This web application allows users to **search and retrieve certificate details** stored in a Google Sheet. Built with **Next.js** for a modern frontend and **Flask** as the backend API, the app fetches and displays participant certificate data based on user input.
+
 
 🔗 **Live Demo**: [https://web-zeta-kohl-63.vercel.app/](https://web-zeta-kohl-63.vercel.app/)
+
+🔗 **Backend Source Code**: [https://github.com/Abhijit12322/IEEEDU-AdminCertificate.git](https://github.com/Abhijit12322/IEEEDU-AdminCertificate.git)
 
 ---
 
 ## ✅ Features
 
 - 🔍 **Real-Time Search**: Quickly find certificate details using name, ID, or other keywords.
-- 📊 **Excel-Based Database**: Reads directly from a raw `data.xlsx` file.
+- 📊 **Google Sheets Backend**: Seamlessly fetches data from a connected spreadsheet.
 - ⚡ **Fast and Lightweight**: Built with performance in mind using Next.js.
 - 🌐 **Hosted on Vercel**: Deployed for public access with fast load times and global availability.
 
@@ -18,18 +21,21 @@ This web application allows users to **search and retrieve certificate details**
 ## 🛠 Tech Stack
 
 - **Frontend**: [Next.js](https://nextjs.org/)
-- **Data Source**: Excel (`.xlsx`) file
-- **Excel Parser**: [SheetJS (xlsx)](https://www.npmjs.com/package/xlsx)
-- **Deployment**: [Vercel](https://vercel.com/)
+- **Backend**: [Flask](https://flask.palletsprojects.com/)
+- **Database**: [Google Sheets](https://www.google.com/sheets/about/)
+- **Deployment**:
+  - Frontend: [Vercel](https://vercel.com/)
+  - Backend: [Render](https://render.com/)
 
 ---
 
 
 ## ⚙️ How It Works
 
-1. User enters a query (name, ID, etc.) into the search bar.
-2. The app reads and parses the `data.xlsx` file using a JavaScript-based Excel parser.
-3. Matching entries are filtered and displayed in real-time on the web page.
+1. User enters a serial number or name in the search bar.
+2. Frontend sends request to Flask backend at `/participants`.
+3. Backend fetches records from the Google Sheet.
+4. Matching results are returned and displayed in a dynamic table.
 
 ---
 
