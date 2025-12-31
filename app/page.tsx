@@ -100,9 +100,9 @@ function App() {
             <Image
               src="/4.png"
               alt="IEEE Dibrugarh University Logo"
-              width={120}
-              height={120}
-              className="h-24 md:h-28 w-auto object-contain drop-shadow-sm hover:scale-105 transition-transform duration-300"
+              width={150}
+              height={150}
+              className="h-15 md:h-10 w-auto object-contain drop-shadow-sm hover:scale-105 transition-transform duration-300"
             />
           </div>
 
