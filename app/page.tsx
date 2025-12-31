@@ -1,8 +1,10 @@
 'use client';
 import React, { useState } from 'react';
+// 1. Added Next.js Image component for optimization
+import Image from 'next/image';
 import {
   Search,
-  Database,
+  // Database, <--- Removed this unused import
   FileText,
   Image as ImageIcon,
   Loader2,
@@ -93,13 +95,14 @@ function App() {
         {/* Branding & Header */}
         <div className="text-center max-w-4xl mx-auto mb-16 animate-[fade-in-up_0.6s_ease-out_both]">
 
-          {/* --- NEW: LOCAL LOGO SECTION --- */}
-          {/* Ensure 'logo.png' is inside your 'public' folder */}
+          {/* --- LOCAL LOGO SECTION (Fixed with Next.js Image) --- */}
           <div className="flex justify-center mb-8">
-            <img
-              src="/4.png"
+            <Image
+              src="/logo.png"
               alt="IEEE Dibrugarh University Logo"
-              className="h-10 md:h-10 w-auto object-contain drop-shadow-sm hover:scale-105 transition-transform duration-300"
+              width={120}
+              height={120}
+              className="h-24 md:h-28 w-auto object-contain drop-shadow-sm hover:scale-105 transition-transform duration-300"
             />
           </div>
 
@@ -155,14 +158,18 @@ function App() {
           <div className="animate-[fade-in_1s_ease-out]">
 
             {/* Stats Bar */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-20">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-20">
               <div className="bg-white/60 p-4 rounded-2xl border border-white text-center">
-                <div className="text-2xl font-bold text-indigo-600">50+</div>
+                <div className="text-2xl font-bold text-indigo-600">500+</div>
                 <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Certificates Issued</div>
               </div>
               <div className="bg-white/60 p-4 rounded-2xl border border-white text-center">
-                <div className="text-2xl font-bold text-blue-600">20+</div>
+                <div className="text-2xl font-bold text-blue-600">50+</div>
                 <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Events Hosted</div>
+              </div>
+              <div className="bg-white/60 p-4 rounded-2xl border border-white text-center">
+                <div className="text-2xl font-bold text-indigo-600">24/7</div>
+                <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Verification API</div>
               </div>
               <div className="bg-white/60 p-4 rounded-2xl border border-white text-center">
                 <div className="text-2xl font-bold text-green-600">100%</div>
@@ -193,7 +200,8 @@ function App() {
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3">Global Accessibility</h3>
                 <p className="text-slate-500 leading-relaxed">
-                  Recruiters, universities, and institutions worldwide can instantly verify a candidate's claims without needing to contact the student branch manually.
+                  {/* Fixed: candidate's -> candidate&apos;s */}
+                  Recruiters, universities, and institutions worldwide can instantly verify a candidate&apos;s claims without needing to contact the student branch manually.
                 </p>
               </div>
 
@@ -328,7 +336,8 @@ function App() {
             </div>
             <h3 className="text-xl font-bold text-slate-900">No Records Found</h3>
             <p className="text-slate-500 mt-2 max-w-sm mx-auto">
-              We couldn't find a certificate matching that Serial ID. Please check the ID on your document and try again.
+              {/* Fixed: couldn't -> couldn&apos;t */}
+              We couldn&apos;t find a certificate matching that Serial ID. Please check the ID on your document and try again.
             </p>
             <button
               onClick={() => { setSerialNo(''); setHasSearched(false); }}
