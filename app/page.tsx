@@ -98,7 +98,7 @@ function App() {
           {/* --- LOCAL LOGO SECTION (Fixed with Next.js Image) --- */}
           <div className="flex justify-center mb-8">
             <Image
-              src="/logo.png"
+              src="/4.png"
               alt="IEEE Dibrugarh University Logo"
               width={120}
               height={120}
