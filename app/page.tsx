@@ -1,10 +1,8 @@
 'use client';
 import React, { useState } from 'react';
-// 1. Added Next.js Image component for optimization
 import Image from 'next/image';
 import {
   Search,
-  // Database, <--- Removed this unused import
   FileText,
   Image as ImageIcon,
   Loader2,
@@ -85,7 +83,6 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-100 font-sans text-slate-900 overflow-x-hidden flex flex-col">
 
-      {/* Background Ambience */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-96 bg-gradient-to-b from-blue-100/50 to-transparent opacity-50"></div>
       </div>
@@ -95,7 +92,6 @@ function App() {
         {/* Branding & Header */}
         <div className="text-center max-w-4xl mx-auto mb-16 animate-[fade-in-up_0.6s_ease-out_both]">
 
-          {/* --- LOCAL LOGO SECTION (Fixed with Next.js Image) --- */}
           <div className="flex justify-center mb-8">
             <Image
               src="/4.png"
@@ -160,7 +156,7 @@ function App() {
             {/* Stats Bar */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-20">
               <div className="bg-white/60 p-4 rounded-2xl border border-white text-center">
-                <div className="text-2xl font-bold text-indigo-600">500+</div>
+                <div className="text-2xl font-bold text-indigo-600">50+</div>
                 <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Certificates Issued</div>
               </div>
               <div className="bg-white/60 p-4 rounded-2xl border border-white text-center">
@@ -336,7 +332,6 @@ function App() {
             </div>
             <h3 className="text-xl font-bold text-slate-900">No Records Found</h3>
             <p className="text-slate-500 mt-2 max-w-sm mx-auto">
-              {/* Fixed: couldn't -> couldn&apos;t */}
               We couldn&apos;t find a certificate matching that Serial ID. Please check the ID on your document and try again.
             </p>
             <button
@@ -349,11 +344,10 @@ function App() {
         )}
       </main>
 
-      {/* Footer - Simplified (Links Removed) */}
+
       <footer className="bg-white border-t border-slate-200 py-12 mt-auto relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center">
 
-          {/* Branding - Centered */}
           <div className="flex items-center gap-2 mb-4">
             <div className="bg-indigo-600 p-1.5 rounded-lg">
               <ShieldCheck className="w-6 h-6 text-white" />
@@ -365,7 +359,6 @@ function App() {
             The official digital credential verification system for the IEEE Student Branch. Dedicated to maintaining the integrity of academic and professional achievements.
           </p>
 
-          {/* Copyright & Icons */}
           <div className="w-full border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-slate-400 text-sm">
               © {new Date().getFullYear()} IEEE Student Branch. All rights reserved.
