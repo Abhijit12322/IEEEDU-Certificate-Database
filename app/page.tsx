@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   Search,
   FileText,
@@ -364,9 +365,13 @@ function App() {
               © {new Date().getFullYear()} IEEE Student Branch. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <Globe className="w-5 h-5 text-slate-400 hover:text-indigo-600 cursor-pointer transition-colors" />
+              <Link href="https://edu.ieee.org/in-dibru/" target="_blank">
+                <Globe className="w-5 h-5 text-slate-400 hover:text-indigo-600 cursor-pointer transition-colors" />
+              </Link>
               <Users className="w-5 h-5 text-slate-400 hover:text-indigo-600 cursor-pointer transition-colors" />
-              <Building2 className="w-5 h-5 text-slate-400 hover:text-indigo-600 cursor-pointer transition-colors" />
+              <Link href="https://maps.app.goo.gl/VeCGX7kdmm9B8KRb9/" target="_blank" >
+                <Building2 className="w-5 h-5 text-slate-400 hover:text-indigo-600 cursor-pointer transition-colors" />
+              </Link>
             </div>
           </div>
         </div>
