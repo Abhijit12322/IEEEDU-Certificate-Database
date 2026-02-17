@@ -128,7 +128,7 @@ function App() {
                 type="text"
                 value={serialNo}
                 onChange={(e) => setSerialNo(e.target.value)}
-                placeholder="Enter Certificate Serial ID (e.g., IEEE20240001) or Name..."
+                placeholder="Enter Certificate Serial ID (e.g., A20250001) or Name..."
                 className="block w-full pl-14 pr-4 py-4 bg-transparent border-transparent focus:border-transparent focus:ring-0 text-slate-900 placeholder-slate-400 text-lg font-medium"
               />
             </div>
